@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pakhi Mittal - Experience</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/experience.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Experience & Activities</h1>
+      <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+    </header>
+
+    <div class="container">
+      <div class="featured-role">
+        <h2>Vice Chairperson</h2>
+        <div class="organization">Bulls and Bears Club, VIT Vellore</div>
+        <div class="duration">2025-2026</div>
+        <ul>
+          <li>
+            Serving as Vice Chairperson for one of VIT's prominent technical clubs
+          </li>
+          <li>Leading all domains and their management</li>
+          <li>Troubleshooting all hurles and rainy days</li>
+          <li>
+            Organized and led 'Dalal Street 2.0' event during Yantra'25, as the POC.
+          </li>
+          <li>
+            Managing all the Club events, external participations, collaborations as well as achievements.
+          </li>
+          <li>
+            Successfully attracted 2500+ participants, enhancing club visibility
+          </li>
+        </ul>
+      </div>
+
+      <div class="experience-section">
+        <h2>Professional Experience</h2>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Programming Languages</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">C++ (DSA)</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Java</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Web Development</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Tools & Technologies</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Git</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Soft Skills</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Team Management</span>
+              <span class="skill-tag">Leadership</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Communication</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <center>
+        <a href="index.html" class="back-button">← Back to Home</a>
+      </center>
+    </div>
+
+    <script>
+      const backButton = document.querySelector(".back-button");
+      backButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.location.href = this.getAttribute("href");
+      });
+      const sections = document.querySelectorAll(
+        ".featured-role, .experience-card, .skills-section"
+      );
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      sections.forEach((section) => observer.observe(section));
+
+      const expCards = document.querySelectorAll(".experience-card");
+      expCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.boxShadow = "0 10px 30px rgba(59, 130, 246, 0.5)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.boxShadow = "";
+        });
+      });
+
+      const skillTags = document.querySelectorAll(".skill-tag");
+      skillTags.forEach((tag) => {
+        tag.addEventListener("mouseenter", () => {
+          tag.style.boxShadow = "0 4px 12px rgba(139, 92, 246, 0.4)";
+        });
+        tag.addEventListener("mouseleave", () => {
+          tag.style.boxShadow = "";
+        });
+      });
+
+      const themeToggle = document.getElementById("theme-toggle");
+      const currentTheme = localStorage.getItem("theme");
+
+      if (currentTheme === "light") {
+        document.body.classList.add("light-mode");
+        themeToggle.textContent = "☀️";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+        const isLightMode = document.body.classList.contains("light-mode");
+        themeToggle.textContent = isLightMode ? "☀️" : "🌙";
+        localStorage.setItem("theme", isLightMode ? "light" : "dark");
+      });
+    </script>
+  </body>
+</html>

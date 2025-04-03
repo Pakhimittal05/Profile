@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pakhi Mittal - Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+      <img src="/1739003325362 (1).jpg" alt="Pakhi Mittal" />
+      <h1>Pakhi Mittal</h1>
+      <p>Computer Science Engineering Student</p>
+    </div>
+
+    <div class="container">
+      <nav class="nav">
+        <a href="Education.html">Education</a>
+        <a href="Experience.html">Experience</a>
+        <a href="Projects.html">Projects</a>
+      </nav>
+
+      <div class="section">
+        <h2>Hello, I'm Pakhi!</h2>
+        <p>
+          A passionate Computer Science Engineering student from Delhi,
+          currently pursuing my BTech at VIT Vellore. I'm dedicated to learning
+          and exploring new technologies to create innovative solutions.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Educational Journey</h2>
+        <ul>
+          <li>
+            <strong>BTech in Computer Science Engineering with specilization in Internet Of Things</strong><br />VIT
+            Vellore - Present
+          </li>
+          
+          <li>
+            <strong>School Education</strong><br />Delhi Public School Rajnagar (Graduated
+            2023)
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <h3>Let's Connect!</h3>
+      <p>
+        <a
+          href="mailto:pakhimittal2005@gmail.com"
+          style="color: white; text-decoration: none"
+          >pakhimittal2005@gmail.com</a
+        >
+      </p>
+      <div class="social-links">
+        <a
+          href="https://www.linkedin.com/in/pakhi-mittal-00352528b/"
+          target="_blank"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/145/145807.png"
+            alt="LinkedIn"
+          />
+        </a>
+        <a href="https://www.instagram.com/pakhi_mittal_/" target="_blank">
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/3955/3955024.png"
+            alt="Instagram"
+          />
+        </a>
+        <a href="https://github.com/Pakhimittal05" target="_blank">
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/1051/1051326.png"
+            alt="GitHub"
+          />
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".nav a").forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId.startsWith("#")) {
+              document.querySelector(targetId).scrollIntoView({
+                behavior: "smooth",
+              });
+            } else {
+              window.location.href = targetId;
+            }
+          });
+        });
+
+        const typewriterText =
+          "A passionate Computer Science Engineering student from Delhi, currently pursuing my BTech at VIT Vellore.";
+        const typewriterElement = document.querySelector(".section p");
+        let index = 0;
+        function typeWriter() {
+          if (index < typewriterText.length) {
+            typewriterElement.innerHTML += typewriterText.charAt(index);
+            index++;
+            setTimeout(typeWriter, 40);
+          }
+        }
+        typewriterElement.innerHTML = "";
+        typeWriter();
+
+        const sections = document.querySelectorAll(".section");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        sections.forEach((section) => observer.observe(section));
+
+        const themeToggle = document.getElementById("theme-toggle");
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme === "light") {
+          document.body.classList.add("light-mode");
+          themeToggle.textContent = "☀️";
+        }
+
+        themeToggle.addEventListener("click", () => {
+          document.body.classList.toggle("light-mode");
+          const isLightMode = document.body.classList.contains("light-mode");
+          themeToggle.textContent = isLightMode ? "☀️" : "🌙";
+          localStorage.setItem("theme", isLightMode ? "light" : "dark");
+        });
+      });
+    </script>
+  </body>
+</html>
